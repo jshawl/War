@@ -1,18 +1,23 @@
 
-var card = {
-  value : null,
-  suit : null,
-};
-
 var createCard = function(value){
-  var newCard=card;
-  console.log(newCard);
+  var newCard = {
+    value : null,
+    suit : null,
+  };
   newCard.value=value;
   return newCard;
 };
 
-console.log(createCard(3));
-
 var createDeck = function(){
-
+  var newDeck=[];
+  console.log(newDeck);
+  for (var i = 2; i <= 14; i++) {
+    var newCard = createCard(i);
+    console.log(newCard);
+    newDeck.push(newCard);
+    console.log(newDeck);
+  }
+  return newDeck;
 };
+
+createDeck();
