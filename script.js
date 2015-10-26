@@ -49,8 +49,20 @@ var divideDeck = function(deck){
   }
 };
 
-var turn = function(arg1,arg2){
-  
+var turn = function(deckOne, deckTwo){
+  if (deckOne[0].value>deckTwo[0].value) {
+    playerWinnings.playerOneWinnings.push(deckTwo[0],deckOne[0]);
+    playerDecks.playerOneDeck=playerDecks.playerOneDeck.slice(1);
+    playerDecks.playerTwoDeck=playerDecks.playerTwoDeck.slice(1);
+  } else if (deckTwo[0].value>deckOne[0].value) {
+    playerWinnings.playerTwoWinnings.push(deckOne[0],deckTwo[0]);
+    playerDecks.playerOneDeck=playerDecks.playerOneDeck.slice(1);
+    playerDecks.playerTwoDeck=playerDecks.playerTwoDeck.slice(1);
+  } else {
+    //weird 3 card thing
+  }
+
+  console.log(playerDecks);
 };
 
 var getCardName = function(card){
@@ -69,5 +81,9 @@ var shuffle = function (array) {
 };
 
 divideDeck(shuffle(createDeck()));
-console.log(playerDecks.playerOneDeck);
-console.log(playerDecks.playerTwoDeck);
+
+while (playerDecks.playerOneDeck.length>0) {
+  turn(playerDecks.playerOneDeck, playerDecks.playerTwoDeck);
+}
+
+console.log(playerWinnings);
