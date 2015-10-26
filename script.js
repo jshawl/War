@@ -4,10 +4,15 @@ var card = {
   suit : null,
 };
 
-var createNewCard = function(){
+var createCard = function(value){
   var newCard=card;
   console.log(newCard);
+  newCard.value=value;
   return newCard;
 };
 
-console.log(createNewCard());
+console.log(createCard(3));
+
+var createDeck = function(){
+
+};
