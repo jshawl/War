@@ -59,10 +59,26 @@ var turn = function(deckOne, deckTwo){
     playerDecks.playerOneDeck=playerDecks.playerOneDeck.slice(1);
     playerDecks.playerTwoDeck=playerDecks.playerTwoDeck.slice(1);
   } else {
-    //weird 3 card thing
+    console.log('tie');
+    if (deckOne[4]) {
+      if (deckOne[4].value>deckTwo[4].value) {
+        playerWinnings.playerOneWinnings.push(deckTwo[0],deckTwo[1],
+          deckTwo[2],deckTwo[3],deckTwo[4],
+          deckOne[0],deckOne[1],deckOne[2],deckOne[3],deckOne[4]);
+      }
+      if (deckTwo[4].value>deckOne[4].value) {
+        playerWinnings.playerTwoWinnings.push(deckOne[0],deckOne[1],
+          deckOne[2],deckOne[3],deckOne[4],
+          deckTwo[0],deckTwo[1],deckTwo[2],deckTwo[3],deckTwo[4]);
+      }
+      playerDecks.playerOneDeck=playerDecks.playerOneDeck.slice(5);
+      playerDecks.playerTwoDeck=playerDecks.playerTwoDeck.slice(5);
+    }else {
+      //flail
+      playerDecks.playerOneDeck=playerDecks.playerOneDeck.slice(1);
+      playerDecks.playerTwoDeck=playerDecks.playerTwoDeck.slice(1);
+    }
   }
-
-  console.log(playerDecks);
 };
 
 var getCardName = function(card){
@@ -81,6 +97,7 @@ var shuffle = function (array) {
 };
 
 divideDeck(shuffle(createDeck()));
+console.log(playerDecks);
 
 while (playerDecks.playerOneDeck.length>0) {
   turn(playerDecks.playerOneDeck, playerDecks.playerTwoDeck);
