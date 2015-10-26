@@ -34,8 +34,7 @@ var createDeck = function(){
   return newDeck;
 };
 
-var divideDeck = function(){
-  var deck = createDeck();
+var divideDeck = function(deck){
   for (var i = 0; i < deck.length ; i++) {
     if (i%2===0) {
       playerDecks.playerOneDeck.push(deck[i]);
@@ -49,7 +48,7 @@ var getCardName = function(card){
   return card.value + ' of ' + card.suit;
 };
 
-var shuffle = function shuffle(array) {
+var shuffle = function (array) {
   var m = array.length, t, i;
   while (m) {
     i = Math.floor(Math.random() * m--);
@@ -60,7 +59,7 @@ var shuffle = function shuffle(array) {
   return array;
 };
 
-console.log(playerDecks.playerOneDeck);
-divideDeck();
+
+divideDeck(shuffle(createDeck()));
 console.log(playerDecks.playerOneDeck);
 console.log(playerDecks.playerTwoDeck);
