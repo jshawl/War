@@ -1,13 +1,13 @@
 
 var card = {
-  value:1,
-  suit: 'Hearts'
+  value : null,
+  suit : null,
 };
 
-console.log(card.value);
-card.value=3;
-console.log(card.value);
+var createNewCard = function(){
+  var newCard=card;
+  console.log(newCard);
+  return newCard;
+};
 
-console.log(card.suit);
-card.suit='Spades';
-console.log(card.suit);
+console.log(createNewCard());
