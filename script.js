@@ -3,6 +3,11 @@ var playerDecks = {
   playerTwoDeck:[]
 };
 
+var playerWinnings = {
+  playerOneWinnings:[],
+  playerTwoWinnings:[]
+};
+
 var createCard = function(value, suit){
   var newCard = {
     value : null,
@@ -44,6 +49,10 @@ var divideDeck = function(deck){
   }
 };
 
+var turn = function(arg1,arg2){
+  
+};
+
 var getCardName = function(card){
   return card.value + ' of ' + card.suit;
 };
@@ -58,7 +67,6 @@ var shuffle = function (array) {
   }
   return array;
 };
-
 
 divideDeck(shuffle(createDeck()));
 console.log(playerDecks.playerOneDeck);
