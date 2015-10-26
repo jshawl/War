@@ -1,7 +1,13 @@
 
 var card = {
   value:1,
-  cl: console.log('hey'),
+  suit: 'Hearts'
 };
 
-card.cl;
+console.log(card.value);
+card.value=3;
+console.log(card.value);
+
+console.log(card.suit);
+card.suit='Spades';
+console.log(card.suit);
