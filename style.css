@@ -1,5 +1,5 @@
 *{
-  box-sizing: border-box;
+  box-sizing: padding-box;
 }
 body{
   margin: 0 auto;
@@ -20,8 +20,13 @@ p{
 }
 
 .cards{
-  border: 2px solid black;
+  border: 1px solid grey;
   height: 200px;
-  width: 100px;
+  width: 150px;
   display: inline-block;
+}
+
+img{
+  max-height: 100%;
+  max-width: 100%;
 }
