@@ -3,6 +3,11 @@ var playerDecks = {
   playerTwoDeck:[]
 };
 
+var combatants = {
+  playerOneCombatants:[],
+  playerTwoCombatants:[]
+};
+
 var playerWinnings = {
   playerOneWinnings:[],
   playerTwoWinnings:[]
@@ -47,6 +52,33 @@ var divideDeck = function(deck){
       playerDecks.playerTwoDeck.push(deck[i]);
     }
   }
+};
+
+var layCards = function(){
+  combatants.playerOneCombatants.push(playerDecks.playerOneDeck[0]);
+  playerDecks.playerOneDeck=playerDecks.playerOneDeck.slice(1);
+  combatants.playerTwoCombatants.push(playerDecks.playerTwoDeck[0]);
+  playerDecks.playerTwoDeck=playerDecks.playerTwoDeck.slice(1);
+};
+
+var determineWinner = function(){
+  if (combatants.playerOneCombatants[0].value>
+    combatants.playerTwoCombatants[0].value) {
+    playerWinnings.playerOneWinnings.push(combatants.playerTwoCombatants[0],combatants.playerOneCombatants[0]);
+    resetCombatants();
+  } else if (combatants.playerTwoCombatants[0].value>
+    combatants.playerOneCombatants[0].value) {
+    playerWinnings.playerTwoWinnings.push(combatants.playerOneCombatants[0],combatants.playerTwoCombatants[0]);
+    resetCombatants();
+  } else {
+    console.log('tie');
+      resetCombatants();
+  }
+};
+
+var resetCombatants = function(){
+  combatants.playerOneCombatants=[];
+  combatants.playerTwoCombatants=[];
 };
 
 var turn = function(deckOne, deckTwo){
@@ -95,13 +127,36 @@ var shuffle = function (array) {
   return array;
 };
 
+var assignLeftDeckImage = function(){
+  $('#leftDeckImage').attr( 'src' , 'playing_cards/cards/' + getCardName(playerDecks.playerOneDeck[0]) + '.png');
+};
+
+var assignRightDeckImage = function(){
+  $('#rightDeckImage').attr( 'src' , 'playing_cards/cards/' + getCardName(playerDecks.playerTwoDeck[0]) + '.png');
+};
+
+var assignLeftWinningsImage = function(imgSource){
+  $('#leftWinningsImage').attr( 'src' , imgSource);
+};
+
+var assignRightWinningsImage = function(imgSource){
+  $('#rightWinningsImage').attr( 'src' , imgSource);
+};
+
+var assignImage = function(id,img){
+  $(id).attr( 'src' , img);
+};
+
 divideDeck(shuffle(createDeck()));
 
-turn(playerDecks.playerOneDeck, playerDecks.playerTwoDeck);
-
+console.log(playerDecks);
+console.log(combatants);
 console.log(playerWinnings);
 
 $('#turn').on('click',function(){
-  turn(playerDecks.playerOneDeck, playerDecks.playerTwoDeck);
-  $('#leftDeckImage').attr( 'src' , 'playing_cards/cards/' + getCardName(playerDecks.playerOneDeck[0]) + '.png');
+  layCards();
+  determineWinner();
+  console.log(playerDecks);
+  console.log(combatants);
+  console.log(playerWinnings);
 });
