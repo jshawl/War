@@ -23,15 +23,15 @@ var createDeck = function(){
   for (var i = 0; i < 4; i++) {
     var suit = null;
     if ( i===0 ) {
-      suit='Hearts';
+      suit='hearts';
     } else if ( i===1 ) {
-      suit='Diamonds';
+      suit='diamonds';
     } else if ( i===2 ) {
-      suit='Spades';
+      suit='spades';
     } else if ( i===3 ) {
-      suit='Clubs';
+      suit='clubs';
     }
-    for (var j = 2; j <= 14; j++) {
+    for (var j = 2; j <= 10; j++) {
       var newCard = createCard(j, suit);
       newDeck.push(newCard);
     }
@@ -81,7 +81,7 @@ var turn = function(deckOne, deckTwo){
 };
 
 var getCardName = function(card){
-  return card.value + ' of ' + card.suit;
+  return card.value + '_of_' + card.suit;
 };
 
 var shuffle = function (array) {
@@ -102,6 +102,6 @@ turn(playerDecks.playerOneDeck, playerDecks.playerTwoDeck);
 console.log(playerWinnings);
 
 $('#turn').on('click',function(){
-  turn(deckOne,deckTwo);
-  $('#rightDeckImage').attr('src','');
+  turn(playerDecks.playerOneDeck, playerDecks.playerTwoDeck);
+  $('#leftDeckImage').attr( 'src' , 'playing_cards/cards/' + getCardName(playerDecks.playerOneDeck[0]) + '.png');
 });
