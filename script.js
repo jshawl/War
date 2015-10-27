@@ -59,7 +59,6 @@ var turn = function(deckOne, deckTwo){
     playerDecks.playerOneDeck=playerDecks.playerOneDeck.slice(1);
     playerDecks.playerTwoDeck=playerDecks.playerTwoDeck.slice(1);
   } else {
-    console.log('tie');
     if (deckOne[4]) {
       if (deckOne[4].value>deckTwo[4].value) {
         playerWinnings.playerOneWinnings.push(deckTwo[0],deckTwo[1],
@@ -97,10 +96,12 @@ var shuffle = function (array) {
 };
 
 divideDeck(shuffle(createDeck()));
-console.log(playerDecks);
 
-while (playerDecks.playerOneDeck.length>0) {
-  turn(playerDecks.playerOneDeck, playerDecks.playerTwoDeck);
-}
+turn(playerDecks.playerOneDeck, playerDecks.playerTwoDeck);
 
 console.log(playerWinnings);
+
+$('#turn').on('click',function(){
+  turn(deckOne,deckTwo);
+  $('#rightDeckImage').attr('src','');
+});
