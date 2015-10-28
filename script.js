@@ -138,8 +138,10 @@ $('#turn').on('click',function(){
   } else if (!decks.p1deck.length) {
     resetImage('#leftDeckImage');
     resetImage('#rightDeckImage');
-
   }
+  $('#leftCounter').text('x '+winnings.p1winnings.length);
+  $('#rightCounter').text('x '+winnings.p2winnings.length);
+
   console.log(decks);
   console.log(combatants);
   console.log(winnings);

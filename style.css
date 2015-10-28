@@ -3,26 +3,39 @@
 }
 body{
   margin: 0 auto;
+  text-align: center;
 }
 
-p{
+span{
+  vertical-align: bottom;
+}
+#leftCounter{
+  float: left;
+}
+
+#rightCounter{
+  float: right;
+}
+
+
+/*p{
   text-align: center;
 }
 
 .container {
     text-align: center;
-}
+}*/
 
-.button {
-    /*position: absolute;
-    top: 50%;*/
+/*.button {
+    position: absolute;
+    top: 50%;
     display: inline-block;
-}
+}*/
 
 .cards{
-  border: 1px solid grey;
+  /*border: 1px solid grey;*/
   height: 200px;
-  width: 160px;
+  width: 200px;
   display: inline-block;
 }
 
