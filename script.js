@@ -1,25 +1,23 @@
-var playerDecks = {
-  playerOneDeck:[],
-  playerTwoDeck:[]
+var decks = {
+  p1deck:[],
+  p2deck:[]
 };
 
 var combatants = {
-  playerOneCombatants:[],
-  playerTwoCombatants:[]
+  p1cmbtnts:[],
+  p2cmbtnts:[]
 };
 
-var playerWinnings = {
-  playerOneWinnings:[],
-  playerTwoWinnings:[]
+var winnings = {
+  p1winnings:[],
+  p2winnings:[]
 };
 
 var createCard = function(value, suit){
   var newCard = {
-    value : null,
-    suit : null,
+    value : value,
+    suit : suit,
   };
-  newCard.value=value;
-  newCard.suit=suit;
   return newCard;
 };
 
@@ -47,70 +45,44 @@ var createDeck = function(){
 var divideDeck = function(deck){
   for (var i = 0; i < deck.length ; i++) {
     if (i%2===0) {
-      playerDecks.playerOneDeck.push(deck[i]);
+      decks.p1deck.push(deck[i]);
     } else {
-      playerDecks.playerTwoDeck.push(deck[i]);
+      decks.p2deck.push(deck[i]);
     }
   }
 };
 
 var layCards = function(){
-  combatants.playerOneCombatants.push(playerDecks.playerOneDeck[0]);
-  playerDecks.playerOneDeck=playerDecks.playerOneDeck.slice(1);
-  combatants.playerTwoCombatants.push(playerDecks.playerTwoDeck[0]);
-  playerDecks.playerTwoDeck=playerDecks.playerTwoDeck.slice(1);
+  combatants.p1cmbtnts.push(decks.p1deck[0]);
+  decks.p1deck=decks.p1deck.slice(1);
+  combatants.p2cmbtnts.push(decks.p2deck[0]);
+  decks.p2deck=decks.p2deck.slice(1);
+  console.log(combatants);
 };
 
-var determineWinner = function(){
-  if (combatants.playerOneCombatants[0].value>
-    combatants.playerTwoCombatants[0].value) {
-    playerWinnings.playerOneWinnings.push(combatants.playerTwoCombatants[0],combatants.playerOneCombatants[0]);
-    resetCombatants();
-  } else if (combatants.playerTwoCombatants[0].value>
-    combatants.playerOneCombatants[0].value) {
-    playerWinnings.playerTwoWinnings.push(combatants.playerOneCombatants[0],combatants.playerTwoCombatants[0]);
-    resetCombatants();
+var duel = function(){
+  if (combatants.p1cmbtnts[0].value>combatants.p2cmbtnts[0].value){
+    winnings.p1winnings.push(combatants.p1cmbtnts[0],combatants.p2cmbtnts[0]);
+  } else if (combatants.p2cmbtnts[0].value>combatants.p1cmbtnts[0].value) {
+    winnings.p2winnings.push(combatants.p1cmbtnts[0],combatants.p2cmbtnts[0]);
   } else {
-    console.log('tie');
-      resetCombatants();
+    resetCombatants();
   }
+  resetCombatants();
 };
 
 var resetCombatants = function(){
-  combatants.playerOneCombatants=[];
-  combatants.playerTwoCombatants=[];
+  combatants.p1cmbtnts=[];
+  combatants.p2cmbtnts=[];
 };
 
-// var turn = function(deckOne, deckTwo){
-//   if (deckOne[0].value>deckTwo[0].value) {
-//     playerWinnings.playerOneWinnings.push(deckTwo[0],deckOne[0]);
-//     playerDecks.playerOneDeck=playerDecks.playerOneDeck.slice(1);
-//     playerDecks.playerTwoDeck=playerDecks.playerTwoDeck.slice(1);
-//   } else if (deckTwo[0].value>deckOne[0].value) {
-//     playerWinnings.playerTwoWinnings.push(deckOne[0],deckTwo[0]);
-//     playerDecks.playerOneDeck=playerDecks.playerOneDeck.slice(1);
-//     playerDecks.playerTwoDeck=playerDecks.playerTwoDeck.slice(1);
-//   } else {
-//     if (deckOne[4]) {
-//       if (deckOne[4].value>deckTwo[4].value) {
-//         playerWinnings.playerOneWinnings.push(deckTwo[0],deckTwo[1],
-//           deckTwo[2],deckTwo[3],deckTwo[4],
-//           deckOne[0],deckOne[1],deckOne[2],deckOne[3],deckOne[4]);
-//       }
-//       if (deckTwo[4].value>deckOne[4].value) {
-//         playerWinnings.playerTwoWinnings.push(deckOne[0],deckOne[1],
-//           deckOne[2],deckOne[3],deckOne[4],
-//           deckTwo[0],deckTwo[1],deckTwo[2],deckTwo[3],deckTwo[4]);
-//       }
-//       playerDecks.playerOneDeck=playerDecks.playerOneDeck.slice(5);
-//       playerDecks.playerTwoDeck=playerDecks.playerTwoDeck.slice(5);
-//     }else {
-//       //flail
-//       playerDecks.playerOneDeck=playerDecks.playerOneDeck.slice(1);
-//       playerDecks.playerTwoDeck=playerDecks.playerTwoDeck.slice(1);
-//     }
-//   }
-// };
+var turn=function(){
+  if (combatants.p2cmbtnts.length) {
+    duel();
+  }
+  layCards();
+  duel();
+};
 
 var getCardName = function(card){
   return card.value + '_of_' + card.suit;
@@ -128,11 +100,11 @@ var shuffle = function (array) {
 };
 
 var assignLeftDeckImage = function(){
-  $('#leftDeckImage').attr( 'src' , 'playing_cards/cards/' + getCardName(playerDecks.playerOneDeck[0]) + '.png');
+  $('#leftDeckImage').attr( 'src' , 'playing_cards/cards/' + getCardName(decks.p1deck[0]) + '.png');
 };
 
 var assignRightDeckImage = function(){
-  $('#rightDeckImage').attr( 'src' , 'playing_cards/cards/' + getCardName(playerDecks.playerTwoDeck[0]) + '.png');
+  $('#rightDeckImage').attr( 'src' , 'playing_cards/cards/' + getCardName(decks.p2deck[0]) + '.png');
 };
 
 var assignLeftWinningsImage = function(imgSource){
@@ -149,15 +121,13 @@ var assignImage = function(id,img){
 
 divideDeck(shuffle(createDeck()));
 
-console.log(playerDecks);
+console.log(decks);
 console.log(combatants);
-console.log(playerWinnings);
+console.log(winnings);
 
 $('#turn').on('click',function(){
-  determineWinner();
-  layCards();
-  
-  console.log(playerDecks);
+  turn();
+  console.log(decks);
   console.log(combatants);
-  console.log(playerWinnings);
+  console.log(winnings);
 });
