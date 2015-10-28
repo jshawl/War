@@ -100,24 +100,12 @@ var shuffle = function (array) {
   return array;
 };
 
-var assignLeftDeckImage = function(){
-  $('#leftDeckImage').attr( 'src' , 'cards/' + getCardName(decks.p1deck[0]) + '.png');
-};
-
-var assignRightDeckImage = function(){
-  $('#rightDeckImage').attr( 'src' , 'cards/' + getCardName(decks.p2deck[0]) + '.png');
-};
-
-var assignLeftWinningsImage = function(imgSource){
-  $('#leftWinningsImage').attr( 'src' , imgSource);
-};
-
-var assignRightWinningsImage = function(imgSource){
-  $('#rightWinningsImage').attr( 'src' , imgSource);
-};
-
 var assignImage = function(id,img){
   $(id).attr( 'src', 'cards/' + img);
+};
+
+var resetImage = function(id){
+  $(id).attr( 'src', '');
 };
 
 divideDeck(shuffle(createDeck()));
@@ -127,18 +115,27 @@ console.log(combatants);
 console.log(winnings);
 
 $('#turn').on('click',function(){
-  turn();
   if (combatants.p1cmbtnts.length) {
+    duel();
+    if (winnings.p1winnings.length) {
+      assignImage('#leftWinningsImage', getCardName(winnings.p1winnings[winnings.p1winnings.length-1]));
+    }
+    if (winnings.p2winnings.length) {
+      assignImage('#rightWinningsImage', getCardName(winnings.p2winnings[winnings.p2winnings.length-1]));
+    }
+    resetImage('#leftCombatantImage');
+    resetImage('#rightCombatantImage');
+  } else if (!combatants.p1cmbtnts.length) {
+    layCards();
     assignImage('#leftCombatantImage', getCardName(combatants.p1cmbtnts[0]));
     assignImage('#rightCombatantImage', getCardName(combatants.p2cmbtnts[0]));
-  }
-  if (winnings.p1winnings.length) {
-    assignImage('#leftWinningsImage', getCardName(winnings.p1winnings[winnings.p1winnings.length-1]));
-    assignImage('#rightWinningsImage', getCardName(winnings.p2winnings[winnings.p2winnings.length-1]));
   }
   if (decks.p1deck.length) {
     assignImage('#leftDeckImage', getCardName(decks.p1deck[0]));
     assignImage('#rightDeckImage', getCardName(decks.p2deck[0]));
+  } else if (!decks.p1deck.length) {
+    assignImage('#leftDeckImage', '');
+    assignImage('#rightDeckImage', '');
   }
   console.log(decks);
   console.log(combatants);
