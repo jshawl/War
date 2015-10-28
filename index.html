@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="jquery-2.1.4.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="style.css" media="screen" title="no title" charset="utf-8">
+    <!-- <link rel="stylesheet" href="normalize.css" media="screen" title="no title" charset="utf-8"> -->
+    <title>War</title>
+  </head>
+  <body>
+    <div class="container">
+      <p>War</p>
+      <div class="cards decks" id="leftDeck">
+        <img id="leftDeckImage" src="" alt="" />
+      </div>
+      <div class="cards combatants" id="leftCombatant">
+        <img id="leftCombatantImage" src="" alt="" />
+      </div>
+      <div class="cards combatants" id="rightCombatant">
+        <img id="rightCombatantImage" src="" alt="" />
+      </div>
+      <div class="cards decks" id="rightDeck">
+        <img id="rightDeckImage" src="" alt="" />
+      </div>
+      <br/>
+      <div class="cards winnings" id="leftWinnings">
+        <span class='counter' id='leftCounter'>x 0</span>
+        <img id="leftWinningsImage"src="" alt="" />
+      </div>
+      <div class="cards winnings" id="rightWinnings">
+        <img id="rightWinningsImage"src="" alt="" />
+        <span class='counter' id='rightCounter'>x 0</span>
+      </div>
+      <br/>
+      <button type="button" name="turn" class="button" id="turn">Turn</button>
+      <button type="button" name="reset" class="button" id='reset'>Reset</button>
+    </div>
+  <script src="script.js" charset="utf-8"></script>
+  </body>
+</html>

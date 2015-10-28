@@ -1,0 +1,63 @@
+*{
+  box-sizing: padding-box;
+}
+body{
+  margin: 0 auto;
+  text-align: center;
+}
+
+span{
+  vertical-align: bottom;
+}
+#leftCounter{
+  float: left;
+  /*display: inline-block;
+  align-self: flex-end;*/
+}
+
+#rightCounter{
+  float: right;
+}
+
+/*#leftWinnings{
+  display: flex;
+  height: 100%;
+}*/
+
+/*p{
+  text-align: center;
+}
+
+.container {
+    text-align: center;
+}*/
+
+/*.button {
+    position: absolute;
+    top: 50%;
+    display: inline-block;
+}*/
+
+.cards{
+  /*border: 1px solid grey;*/
+  height: 200px;
+  width: 200px;
+  display: inline-block;
+}
+
+.decks{
+  border: 1px dashed black;
+}
+
+.combatants{
+  border: 1px dashed red;
+}
+
+.winnings{
+  border: 1px dashed green;
+}
+
+img{
+  max-height: 100%;
+  max-width: 100%;
+}
