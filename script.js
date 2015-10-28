@@ -64,8 +64,9 @@ var duel = function(){
   if (combatants.p1cmbtnts[0].value>combatants.p2cmbtnts[0].value){
     winnings.p1winnings.push(combatants.p1cmbtnts[0],combatants.p2cmbtnts[0]);
   } else if (combatants.p2cmbtnts[0].value>combatants.p1cmbtnts[0].value) {
-    winnings.p2winnings.push(combatants.p1cmbtnts[0],combatants.p2cmbtnts[0]);
+    winnings.p2winnings.push(combatants.p2cmbtnts[0],combatants.p1cmbtnts[0]);
   } else {
+    console.log('tie');
     resetCombatants();
   }
   resetCombatants();
@@ -85,7 +86,7 @@ var turn=function(){
 };
 
 var getCardName = function(card){
-  return card.value + '_of_' + card.suit;
+  return card.value + '_of_' + card.suit + '.png';
 };
 
 var shuffle = function (array) {
@@ -100,11 +101,11 @@ var shuffle = function (array) {
 };
 
 var assignLeftDeckImage = function(){
-  $('#leftDeckImage').attr( 'src' , 'playing_cards/cards/' + getCardName(decks.p1deck[0]) + '.png');
+  $('#leftDeckImage').attr( 'src' , 'cards/' + getCardName(decks.p1deck[0]) + '.png');
 };
 
 var assignRightDeckImage = function(){
-  $('#rightDeckImage').attr( 'src' , 'playing_cards/cards/' + getCardName(decks.p2deck[0]) + '.png');
+  $('#rightDeckImage').attr( 'src' , 'cards/' + getCardName(decks.p2deck[0]) + '.png');
 };
 
 var assignLeftWinningsImage = function(imgSource){
@@ -116,7 +117,7 @@ var assignRightWinningsImage = function(imgSource){
 };
 
 var assignImage = function(id,img){
-  $(id).attr( 'src' , img);
+  $(id).attr( 'src', 'cards/' + img);
 };
 
 divideDeck(shuffle(createDeck()));
@@ -127,6 +128,18 @@ console.log(winnings);
 
 $('#turn').on('click',function(){
   turn();
+  if (combatants.p1cmbtnts.length) {
+    assignImage('#leftCombatantImage', getCardName(combatants.p1cmbtnts[0]));
+    assignImage('#rightCombatantImage', getCardName(combatants.p2cmbtnts[0]));
+  }
+  if (winnings.p1winnings.length) {
+    assignImage('#leftWinningsImage', getCardName(winnings.p1winnings[winnings.p1winnings.length-1]));
+    assignImage('#rightWinningsImage', getCardName(winnings.p2winnings[winnings.p2winnings.length-1]));
+  }
+  if (decks.p1deck.length) {
+    assignImage('#leftDeckImage', getCardName(decks.p1deck[0]));
+    assignImage('#rightDeckImage', getCardName(decks.p2deck[0]));
+  }
   console.log(decks);
   console.log(combatants);
   console.log(winnings);
