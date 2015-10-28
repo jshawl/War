@@ -141,7 +141,15 @@ $('#turn').on('click',function(){
   }
   $('#leftCounter').text('x '+winnings.p1winnings.length);
   $('#rightCounter').text('x '+winnings.p2winnings.length);
-
+  if (!decks.p1deck.length && !combatants.p1cmbtnts.length) {
+    if (winnings.p1winnings.length>winnings.p2winnings.length) {
+      alert('player one wins!');
+    } else if (winnings.p2winnings.length>winnings.p1winnings.length) {
+      alert('player two wins!');
+    } else {
+      alert('tie!');
+    }
+  }
   console.log(decks);
   console.log(combatants);
   console.log(winnings);

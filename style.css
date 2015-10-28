@@ -11,12 +11,18 @@ span{
 }
 #leftCounter{
   float: left;
+  /*display: inline-block;
+  align-self: flex-end;*/
 }
 
 #rightCounter{
   float: right;
 }
 
+/*#leftWinnings{
+  display: flex;
+  height: 100%;
+}*/
 
 /*p{
   text-align: center;
