@@ -61,15 +61,41 @@ var layCards = function(){
 };
 
 var duel = function(){
-  if (combatants.p1cmbtnts[0].value>combatants.p2cmbtnts[0].value){
+  if (combatants.p1cmbtnts[combatants.p1cmbtnts.length-1].value>combatants.p2cmbtnts[combatants.p2cmbtnts.length-1].value){
     winnings.p1winnings.push(combatants.p1cmbtnts[0],combatants.p2cmbtnts[0]);
-  } else if (combatants.p2cmbtnts[0].value>combatants.p1cmbtnts[0].value) {
+  } else if (combatants.p2cmbtnts[combatants.p2cmbtnts.length-1].value>combatants.p1cmbtnts[combatants.p1cmbtnts.length-1].value) {
     winnings.p2winnings.push(combatants.p2cmbtnts[0],combatants.p1cmbtnts[0]);
   } else {
     console.log('tie');
-    resetCombatants();
+    tie();
   }
   resetCombatants();
+};
+
+var tie = function(){
+  var cardsLeft = decks.p1deck.length;
+  if (cardsLeft<4) {
+    for (var a = 0; a < cardsLeft; a++) {
+      layCards();
+    }
+  } else {
+    for (var u = 0; u < 4; u++) {
+      layCards();
+    }
+  }
+  if (combatants.p1cmbtnts[combatants.p1cmbtnts.length-1].value>
+    combatants.p2cmbtnts[combatants.p2cmbtnts.length-1].value){
+      //TODO write function to push cards
+    for (var i = 0; i < combatants.p1cmbtnts.length; i++) {
+      winnings.p1winnings.push(combatants.p1cmbtnts[i],combatants.p2cmbtnts[i]);
+    }
+  } else if (combatants.p2cmbtnts[combatants.p2cmbtnts.length-1].value>
+    combatants.p1cmbtnts[combatants.p1cmbtnts.length-1].value) {
+    for (var j = 0; j < combatants.p1cmbtnts.length; j++) {
+      winnings.p1winnings.push(combatants.p1cmbtnts[j],
+        combatants.p2cmbtnts[j]);
+    }
+  }
 };
 
 var resetCombatants = function(){
