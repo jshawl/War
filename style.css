@@ -45,6 +45,18 @@ span{
   display: inline-block;
 }
 
+.decks{
+  border: 1px dashed black;
+}
+
+.combatants{
+  border: 1px dashed red;
+}
+
+.winnings{
+  border: 1px dashed green;
+}
+
 img{
   max-height: 100%;
   max-width: 100%;

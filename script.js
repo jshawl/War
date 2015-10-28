@@ -77,6 +77,11 @@ var resetCombatants = function(){
   combatants.p2cmbtnts=[];
 };
 
+var resetWinners = function(){
+  winnings.p1winnings=[];
+  winnings.p2winnings=[];
+};
+
 var turn=function(){
   if (combatants.p2cmbtnts.length) {
     duel();
@@ -154,3 +159,11 @@ $('#turn').on('click',function(){
   console.log(combatants);
   console.log(winnings);
 });
+
+// $('#reset').on('click',function(){
+//   resetCombatants();
+//
+//   divideDeck(shuffle(createDeck()));
+//   assignImage('#leftDeckImage', 'card_back.png');
+//   assignImage('#rightDeckImage', 'card_back.png');
+// });
