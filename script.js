@@ -109,6 +109,8 @@ var resetImage = function(id){
 };
 
 divideDeck(shuffle(createDeck()));
+assignImage('#leftDeckImage', 'card_back.png');
+assignImage('#rightDeckImage', 'card_back.png');
 
 console.log(decks);
 console.log(combatants);
@@ -131,11 +133,12 @@ $('#turn').on('click',function(){
     assignImage('#rightCombatantImage', getCardName(combatants.p2cmbtnts[0]));
   }
   if (decks.p1deck.length) {
-    assignImage('#leftDeckImage', getCardName(decks.p1deck[0]));
-    assignImage('#rightDeckImage', getCardName(decks.p2deck[0]));
+    assignImage('#leftDeckImage', 'card_back.png');
+    assignImage('#rightDeckImage', 'card_back.png');
   } else if (!decks.p1deck.length) {
-    assignImage('#leftDeckImage', '');
-    assignImage('#rightDeckImage', '');
+    resetImage('#leftDeckImage');
+    resetImage('#rightDeckImage');
+
   }
   console.log(decks);
   console.log(combatants);
