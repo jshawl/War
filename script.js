@@ -13,6 +13,16 @@ var winnings = {
   p2winnings:[]
 };
 
+// can you think of a way to combine the above three objects?
+// maybe:
+// var war = {
+//   deck: [],
+//   players: [
+//     {name: "Jesse", hand: [] }
+//   ],
+//   winners: []
+// }
+
 var createCard = function(value, suit){
   var newCard = {
     value : value,
@@ -40,7 +50,7 @@ var createDeck = function(){
     }
   }
   return newDeck;
-};
+}; //excellent!
 
 var divideDeck = function(deck){
   for (var i = 0; i < deck.length ; i++) {
@@ -50,7 +60,8 @@ var divideDeck = function(deck){
       decks.p2deck.push(deck[i]);
     }
   }
-};
+}; // I recommend putting the entire build deck functionality into a single function.
+// Once this is working, you can encapsulate its behavior from the rest of your code.
 
 var layCards = function(){
   combatants.p1cmbtnts.push(decks.p1deck[0]);
@@ -61,6 +72,7 @@ var layCards = function(){
 };
 
 var duel = function(){
+  // code comments would be useful to hear to explain how this code works.
   if (combatants.p1cmbtnts[combatants.p1cmbtnts.length-1].value>combatants.p2cmbtnts[combatants.p2cmbtnts.length-1].value){
     winnings.p1winnings.push(combatants.p1cmbtnts[0],combatants.p2cmbtnts[0]);
   } else if (combatants.p2cmbtnts[combatants.p2cmbtnts.length-1].value>combatants.p1cmbtnts[combatants.p1cmbtnts.length-1].value) {
@@ -73,6 +85,7 @@ var duel = function(){
 };
 
 var tie = function(){
+  // i.e. how is tie different from duel? maybe a better name would be checkIfTie()
   var cardsLeft = decks.p1deck.length;
   if (cardsLeft<4) {
     for (var a = 0; a < cardsLeft; a++) {
@@ -85,7 +98,7 @@ var tie = function(){
   }
   if (combatants.p1cmbtnts[combatants.p1cmbtnts.length-1].value>
     combatants.p2cmbtnts[combatants.p2cmbtnts.length-1].value){
-      //TODO write function to push cards
+      //TODO write function to push cards // nice!
     for (var i = 0; i < combatants.p1cmbtnts.length; i++) {
       winnings.p1winnings.push(combatants.p1cmbtnts[i],combatants.p2cmbtnts[i]);
     }
@@ -133,6 +146,7 @@ var shuffle = function (array) {
 
 var assignImage = function(id,img){
   $(id).attr( 'src', 'cards/' + img);
+  // very clever! This is the right way to do it in my opinion.
 };
 
 var resetImage = function(id){
@@ -181,11 +195,13 @@ $('#turn').on('click',function(){
       alert('tie!');
     }
   }
+  // I'm having a bit of trouble understanding how the above code works. Again, code comments would be useful here
   console.log(decks);
   console.log(combatants);
   console.log(winnings);
 });
 
+// please remove unused code before submitting in the future.
 // $('#reset').on('click',function(){
 //   resetCombatants();
 //
